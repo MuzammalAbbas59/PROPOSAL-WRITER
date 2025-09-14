@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ResumeCraft AI
+
+A Next.js application that helps job seekers create tailored application materials using AI. The app generates personalized cover letters and resume bullet point suggestions based on your resume and job descriptions.
+
+## Features
+
+- **Personalized Cover Letters**: Generate professional, tailored cover letters (3-5 paragraphs) that highlight relevant experience
+- **Resume Optimization**: Get 3-5 suggested bullet points to better align your resume with specific job requirements
+- **Flexible Input Methods**: Upload files (PDF, DOC, DOCX, TXT) or paste text directly
+- **File Processing**: Automatic text extraction from PDF, DOC, DOCX, and TXT files
+- **AI-Powered**: Uses OpenAI's GPT-3.5-turbo for intelligent content generation
+- **Modern UI**: Built with Next.js 15, TypeScript, and Tailwind CSS
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Copy to Clipboard**: Easy copying of generated materials
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React, TypeScript
+- **Styling**: Tailwind CSS
+- **AI**: OpenAI API (GPT-3.5-turbo)
+- **File Processing**: pdf-parse (PDF), mammoth (DOC/DOCX)
+- **Deployment**: Vercel-ready
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+
+- OpenAI API key
+
+### Installation
+
+#### Quick Setup (Recommended)
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd resume-craft-ai
+chmod +x setup.sh
+./setup.sh
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Manual Setup
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd resume-craft-ai
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Install dependencies:
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Set up environment variables:
+```bash
+cp .env.local.example .env.local
+```
 
-## Learn More
+4. Add your OpenAI API key to `.env.local`:
+```bash
+# Edit .env.local and add your OpenAI API key
+OPENAI_API_KEY=your_actual_openai_api_key_here
+```
 
-To learn more about Next.js, take a look at the following resources:
+5. Run the development server:
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+### Input Methods
+You can choose between two input methods for both resume and job description:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Text Input**: Copy and paste your content directly
+2. **File Upload**: Upload PDF, DOC, DOCX, or TXT files
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Steps
+1. **Choose Input Method**: Select "Text" or "File" for both resume and job description
+2. **Provide Content**: Either paste text or upload files
+3. **Generate Materials**: Click the "Generate Cover Letter & Resume Suggestions" button
+4. **Review Results**: The app will generate:
+   - A personalized cover letter tailored to the job
+   - 3-5 resume bullet points optimized for the position
+5. **Copy Results**: Use the copy buttons to easily copy generated materials
+
+## API Endpoints
+
+### POST /api/generate
+
+Generates cover letter and resume suggestions based on provided resume and job description.
+
+**Request Body:**
+```json
+{
+  "resume": "Your resume text...",
+  "jobDescription": "Job description text..."
+}
+```
+
+**Response:**
+```json
+{
+  "coverLetter": "Generated cover letter...",
+  "resumeBulletPoints": [
+    "Optimized bullet point 1",
+    "Optimized bullet point 2",
+    "Optimized bullet point 3"
+  ]
+}
+```
+
+### POST /api/upload
+
+Processes uploaded files and extracts text content.
+
+**Request:** FormData with file field
+
+**Supported File Types:**
+- PDF (.pdf)
+- Microsoft Word (.doc, .docx)
+- Plain Text (.txt)
+
+**Response:**
+```json
+{
+  "text": "Extracted text content..."
+}
+```
+
+**Error Response:**
+```json
+{
+  "error": "Error message...",
+  "text": "Fallback text or error details..."
+}
+```
+
+## Deployment
+
+The app is ready for deployment on Vercel:
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Add your `OPENAI_API_KEY` environment variable in Vercel dashboard
+4. Deploy!
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details.
