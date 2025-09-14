@@ -1,6 +1,5 @@
-import { useRef } from 'react';
 import { InputMethod } from '@/lib/apiUtils';
-import { handleFileUpload, clearFile } from '@/lib/fileUtils';
+import { clearFile } from '@/lib/fileUtils';
 import { formatFileSize } from '@/lib/uiUtils';
 
 interface InputSectionProps {

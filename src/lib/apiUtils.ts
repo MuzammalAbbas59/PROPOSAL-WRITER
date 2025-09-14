@@ -5,6 +5,7 @@ export interface ApplicationMaterials {
 
 export type DocumentType = 'cover-letter' | 'proposal';
 export type DetailLevel = 'brief' | 'detailed';
+export type InputMethod = 'text' | 'file';
 
 export const generateMaterials = async (
   resume: string,
