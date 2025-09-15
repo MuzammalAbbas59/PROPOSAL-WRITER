@@ -16,30 +16,42 @@ export default function GenerateButton({
   showRetry
 }: GenerateButtonProps) {
   return (
-    <div className="text-center mb-8">
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+    <div className="text-center mb-12">
+      <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
         <button
           onClick={onGenerate}
           disabled={loading}
-          className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-4 px-12 rounded-2xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed font-bold text-lg shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
+          className="group relative bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white py-6 px-16 rounded-3xl hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-black text-xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 disabled:hover:scale-100 overflow-hidden"
         >
-          {loading ? (
-            <div className="flex items-center space-x-3">
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-              <span>Generating Materials...</span>
-            </div>
-          ) : (
-            `🚀 Generate ${documentType === 'cover-letter' ? 'Cover Letter' : 'Proposal'} & Resume Suggestions`
-          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          <div className="relative flex items-center space-x-4">
+            {loading ? (
+              <>
+                <div className="animate-spin rounded-full h-6 w-6 border-3 border-white/30 border-t-white"></div>
+                <span className="text-lg">Generating Materials...</span>
+              </>
+            ) : (
+              <>
+                <span className="text-2xl group-hover:animate-bounce">🚀</span>
+                <span className="text-lg">
+                  Generate {documentType === 'cover-letter' ? 'Cover Letter' : 'Proposal'} & Resume Suggestions
+                </span>
+              </>
+            )}
+          </div>
         </button>
 
         {showRetry && (
           <button
             onClick={onRetry}
             disabled={loading}
-            className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 px-8 rounded-2xl hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-4 focus:ring-green-300 disabled:opacity-50 disabled:cursor-not-allowed font-bold text-lg shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
+            className="group relative bg-gradient-to-r from-emerald-600 to-cyan-600 text-white py-6 px-12 rounded-3xl hover:from-emerald-700 hover:to-cyan-700 focus:outline-none focus:ring-4 focus:ring-emerald-500/50 disabled:opacity-50 disabled:cursor-not-allowed font-black text-xl shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 transform hover:scale-110 disabled:hover:scale-100 overflow-hidden"
           >
-            🔄 Retry Generation
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            <div className="relative flex items-center space-x-3">
+              <span className="text-2xl group-hover:animate-spin">🔄</span>
+              <span className="text-lg">Retry Generation</span>
+            </div>
           </button>
         )}
       </div>

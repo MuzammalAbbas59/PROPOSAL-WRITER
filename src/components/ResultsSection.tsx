@@ -8,60 +8,66 @@ interface ResultsSectionProps {
 
 export default function ResultsSection({ materials, documentType }: ResultsSectionProps) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       {/* Cover Letter/Proposal Section */}
-      <div className="bg-white rounded-2xl shadow-xl p-6 lg:p-8 border border-gray-100">
-        <div className="flex items-center space-x-3 mb-6">
-          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-            <span className="text-blue-600 text-xl">
+      <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 lg:p-12 border border-white/20 shadow-2xl">
+        <div className="flex items-center space-x-4 mb-8">
+          <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <span className="text-3xl">
               {documentType === 'cover-letter' ? '📝' : '💼'}
             </span>
           </div>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
+          <h2 className="text-3xl lg:text-4xl font-black text-white">
             {documentType === 'cover-letter' ? 'Cover Letter' : 'Upwork Proposal'}
           </h2>
         </div>
-        <div className="bg-gray-50 rounded-xl p-4 lg:p-6 border border-gray-200">
-          <pre className="whitespace-pre-wrap text-gray-800 leading-relaxed font-sans text-sm lg:text-base">
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/20 shadow-lg">
+          <pre className="whitespace-pre-wrap text-white leading-relaxed font-sans text-base lg:text-lg">
             {materials.coverLetter}
           </pre>
         </div>
-        <div className="mt-4 flex justify-end">
+        <div className="mt-8 flex justify-end">
           <button
             onClick={() => copyToClipboard(materials.coverLetter)}
-            className="bg-blue-600 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium shadow-lg hover:shadow-xl"
+            className="group bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-2xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105"
           >
-            📋 Copy {documentType === 'cover-letter' ? 'Cover Letter' : 'Proposal'}
+            <span className="flex items-center space-x-3">
+              <span className="text-xl group-hover:animate-bounce">📋</span>
+              <span>Copy {documentType === 'cover-letter' ? 'Cover Letter' : 'Proposal'}</span>
+            </span>
           </button>
         </div>
       </div>
 
       {/* Resume Bullet Points Section */}
-      <div className="bg-white rounded-2xl shadow-xl p-6 lg:p-8 border border-gray-100">
-        <div className="flex items-center space-x-3 mb-6">
-          <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-            <span className="text-green-600 text-xl">✨</span>
+      <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 lg:p-12 border border-white/20 shadow-2xl">
+        <div className="flex items-center space-x-4 mb-8">
+          <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <span className="text-3xl">✨</span>
           </div>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">Resume Bullet Points</h2>
+          <h2 className="text-3xl lg:text-4xl font-black text-white">Resume Bullet Points</h2>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-6">
           {materials.resumeBulletPoints.map((point, index) => (
-            <div key={index} className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 lg:p-6 border border-blue-200 hover:shadow-md transition-shadow">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+            <div key={index} className="group bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/20 hover:border-emerald-400/50 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 transform hover:scale-[1.02]">
+              <div className="flex items-start space-x-6">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-2xl flex items-center justify-center text-lg font-black shadow-lg group-hover:scale-110 transition-transform duration-300">
                   {index + 1}
                 </div>
-                <p className="text-gray-800 leading-relaxed font-medium text-sm lg:text-base">{point}</p>
+                <p className="text-white leading-relaxed font-medium text-base lg:text-lg group-hover:text-emerald-100 transition-colors duration-300">{point}</p>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-6 flex justify-end">
+        <div className="mt-10 flex justify-end">
           <button
             onClick={() => copyToClipboard(materials.resumeBulletPoints.join('\n'))}
-            className="bg-green-600 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium shadow-lg hover:shadow-xl"
+            className="group bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-8 py-4 rounded-2xl hover:from-emerald-600 hover:to-cyan-600 transition-all duration-300 font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105"
           >
-            📋 Copy All Bullet Points
+            <span className="flex items-center space-x-3">
+              <span className="text-xl group-hover:animate-bounce">📋</span>
+              <span>Copy All Bullet Points</span>
+            </span>
           </button>
         </div>
       </div>

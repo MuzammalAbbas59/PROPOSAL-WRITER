@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# ResumeCraft AI Setup Script
-echo "🚀 Setting up ResumeCraft AI..."
+# Coverposal Setup Script
+echo "🚀 Setting up Coverposal..."
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then

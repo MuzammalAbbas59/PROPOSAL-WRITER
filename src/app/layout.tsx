@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ResumeCraft AI",
-  description: "AI-powered resume and cover letter generator. Create personalized cover letters, proposals, and resume suggestions tailored to any job.",
+  title: "Coverposal - AI-Powered Cover Letters & Proposals",
+  description: "Create stunning, personalized cover letters and proposals with AI. Generate tailored application materials and resume suggestions for any job opportunity.",
 };
 
 export default function RootLayout({

@@ -38,59 +38,73 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-4 lg:py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute top-40 left-1/2 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-2000"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         {/* Header */}
-        <div className="text-center mb-8 lg:mb-12">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
-            ResumeCraft AI
+        <div className="text-center mb-12 lg:mb-16">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl mb-6 shadow-2xl">
+            <span className="text-3xl">✨</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight">
+            Coverposal
           </h1>
-          <p className="text-lg lg:text-xl text-gray-700 max-w-4xl mx-auto px-4">
-            Get personalized cover letters, proposals, and resume suggestions tailored to any job.
-            Upload files or paste text - your choice!
+          <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto px-4 leading-relaxed">
+            AI-powered cover letters, proposals, and resume optimization
+            <br />
+            <span className="text-purple-300 font-semibold">Tailored to perfection for any job</span>
           </p>
         </div>
 
-        {/* Document Type and Detail Level Selection */}
-        <div className="bg-white rounded-2xl shadow-xl p-6 lg:p-8 mb-6 lg:mb-8 border border-gray-100">
-          <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 text-center">Customize Your Output</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            <DocumentTypeSelector
-              documentType={documentType}
-              setDocumentType={setDocumentType}
-            />
-            <DetailLevelSelector
-              detailLevel={detailLevel}
-              setDetailLevel={setDetailLevel}
-            />
+        {/* Main Content Container */}
+        <div className="space-y-8 lg:space-y-12">
+          {/* Document Type and Detail Level Selection */}
+          <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 lg:p-8 border border-white/20 shadow-2xl">
+            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-8 text-center">Customize Your Output</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+              <DocumentTypeSelector
+                documentType={documentType}
+                setDocumentType={setDocumentType}
+              />
+              <DetailLevelSelector
+                detailLevel={detailLevel}
+                setDetailLevel={setDetailLevel}
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Input Sections */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 mb-6 lg:mb-8">
-          <ResumeInput {...fileHandlers} />
-          <JobDescriptionInput {...fileHandlers} />
-        </div>
+          {/* Input Sections */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
+            <ResumeInput {...fileHandlers} />
+            <JobDescriptionInput {...fileHandlers} />
+          </div>
 
-        {/* Generate Button */}
-        <GenerateButton
-          loading={loading}
-          documentType={documentType}
-          onGenerate={handleGenerate}
-          onRetry={handleRetry}
-          showRetry={!!materials}
-        />
-
-        {/* Error Alert */}
-        <ErrorAlert error={error} />
-
-        {/* Results */}
-        {materials && (
-          <ResultsSection
-            materials={materials}
+          {/* Generate Button */}
+          <GenerateButton
+            loading={loading}
             documentType={documentType}
+            onGenerate={handleGenerate}
+            onRetry={handleRetry}
+            showRetry={!!materials}
           />
-        )}
+
+          {/* Error Alert */}
+          <ErrorAlert error={error} />
+
+          {/* Results */}
+          {materials && (
+            <ResultsSection
+              materials={materials}
+              documentType={documentType}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

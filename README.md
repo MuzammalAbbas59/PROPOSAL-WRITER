@@ -1,10 +1,10 @@
-# ResumeCraft AI
+# Coverposal
 
-A Next.js application that helps job seekers create tailored application materials using AI. The app generates personalized cover letters and resume bullet point suggestions based on your resume and job descriptions.
+A Next.js application that helps job seekers create tailored application materials using AI. The app generates personalized cover letters, proposals, and resume bullet point suggestions based on your resume and job descriptions.
 
 ## Features
 
-- **Personalized Cover Letters**: Generate professional, tailored cover letters (3-5 paragraphs) that highlight relevant experience
+- **Personalized Cover Letters & Proposals**: Generate professional, tailored cover letters and Upwork proposals (3-5 paragraphs) that highlight relevant experience
 - **Resume Optimization**: Get 3-5 suggested bullet points to better align your resume with specific job requirements
 - **Flexible Input Methods**: Upload files (PDF, DOC, DOCX, TXT) or paste text directly
 - **File Processing**: Automatic text extraction from PDF, DOC, DOCX, and TXT files
@@ -33,7 +33,7 @@ A Next.js application that helps job seekers create tailored application materia
 #### Quick Setup (Recommended)
 ```bash
 git clone <your-repo-url>
-cd resume-craft-ai
+cd coverposal
 chmod +x setup.sh
 ./setup.sh
 ```
@@ -42,7 +42,7 @@ chmod +x setup.sh
 1. Clone the repository:
 ```bash
 git clone <your-repo-url>
-cd resume-craft-ai
+cd coverposal
 ```
 
 2. Install dependencies:

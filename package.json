@@ -1,8 +1,8 @@
 {
-  "name": "resume-craft-ai",
+  "name": "coverposal",
   "version": "0.1.0",
   "private": true,
-  "description": "AI-powered resume and cover letter generator",
+  "description": "AI-powered cover letter and proposal generator",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",

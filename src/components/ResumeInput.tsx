@@ -24,26 +24,31 @@ export default function ResumeInput({
   const resumeFileRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-6 lg:p-8 border border-gray-100">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-        <h2 className="text-xl lg:text-2xl font-bold text-gray-900">Your Resume</h2>
-        <div className="flex space-x-2">
+    <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 lg:p-8 border border-white/20 shadow-2xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+        <div className="flex items-center space-x-3">
+          <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+            <span className="text-2xl">📄</span>
+          </div>
+          <h2 className="text-2xl lg:text-3xl font-bold text-white">Your Resume</h2>
+        </div>
+        <div className="flex space-x-3">
           <button
             onClick={() => setResumeInputMethod('text')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 ${
               resumeInputMethod === 'text'
-                ? 'bg-blue-100 text-black border-2 border-blue-300'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25'
+                : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white border border-white/20'
             }`}
           >
             📝 Text
           </button>
           <button
             onClick={() => setResumeInputMethod('file')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 transform hover:scale-105 ${
               resumeInputMethod === 'file'
-                ? 'bg-blue-100 text-black border-2 border-blue-300'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25'
+                : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white border border-white/20'
             }`}
           >
             📄 File
@@ -53,15 +58,15 @@ export default function ResumeInput({
 
       {resumeInputMethod === 'text' ? (
         <textarea
-          rows={10}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none text-gray-900 placeholder-gray-500"
+          rows={12}
+          className="w-full px-6 py-4 bg-white/5 border-2 border-white/20 rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-purple-500/50 focus:border-purple-400 transition-all duration-300 resize-none text-white placeholder-gray-400 backdrop-blur-sm"
           placeholder="Paste your resume text here..."
           value={resume}
           onChange={(e) => setResume(e.target.value)}
         />
       ) : (
-        <div className="space-y-4">
-          <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 lg:p-8 text-center hover:border-blue-400 transition-colors">
+        <div className="space-y-6">
+          <div className="border-2 border-dashed border-white/30 rounded-2xl p-8 lg:p-12 text-center hover:border-purple-400/50 transition-all duration-300 group bg-white/5 backdrop-blur-sm">
             <input
               ref={resumeFileRef}
               type="file"
@@ -69,35 +74,37 @@ export default function ResumeInput({
               onChange={handleResumeFileChange}
               className="hidden"
             />
-            <div className="space-y-4">
-              <div className="text-4xl">📄</div>
+            <div className="space-y-6">
+              <div className="text-6xl group-hover:scale-110 transition-transform duration-300">📄</div>
               <div>
                 <button
                   onClick={() => resumeFileRef.current?.click()}
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-2xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105"
                 >
                   Choose Resume File
                 </button>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-gray-300 mt-4 font-medium">
                   Supports PDF, DOC, DOCX, TXT
                 </p>
               </div>
             </div>
           </div>
           {resumeFile && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="text-green-600">✅</div>
+            <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50 rounded-2xl p-6 flex items-center justify-between backdrop-blur-sm shadow-lg">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-2xl">✅</span>
+                </div>
                 <div>
-                  <p className="font-medium text-green-800">{resumeFile.name}</p>
-                  <p className="text-sm text-green-600">
+                  <p className="font-bold text-white text-lg">{resumeFile.name}</p>
+                  <p className="text-sm text-green-300 font-medium">
                     {(resumeFile.size / 1024).toFixed(1)} KB
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => clearFile(resumeFileRef, setResumeFile)}
-                className="text-red-500 hover:text-red-700 transition-colors"
+                className="w-10 h-10 bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 rounded-xl transition-all duration-300 flex items-center justify-center border border-red-500/30"
               >
                 ✕
               </button>
